@@ -15,7 +15,7 @@ export default function NotesScreen({ navigation, route }) {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = db.onSnapshot((collection) => {
+    const unsubscribe = db.orderBy("title").onSnapshot((collection) => {
       const updatedNotes = collection.docs.map((doc) => {
         const noteObject = {
           ...doc.data(),
